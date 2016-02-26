@@ -26,4 +26,12 @@ public class ClientTest {
     newClient.save();
     assertTrue(Client.all().get(0).equals(newClient));
   }
+
+  @Test
+  public void save_assignsIdToClient() {
+    Client newClient = new Client("Matt", 1);
+    newClient.save();
+    Client savedClient = Client.all().get(0);
+    assertEquals(newClient.getId(), savedClient.getId());
+  }
 }

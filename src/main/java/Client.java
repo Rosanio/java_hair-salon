@@ -12,6 +12,10 @@ public class Client {
     this.stylist_id = stylist_id;
   }
 
+  public int getId() {
+    return id;
+  }
+
   public String getName() {
     return name;
   }
@@ -40,7 +44,7 @@ public class Client {
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO clients (name, stylist_id) VALUES (:name, :stylist_id)";
-      con.createQuery(sql).addParameter("name", name).addParameter("stylist_id", stylist_id).executeUpdate();
+      this.id = (int) con.createQuery(sql, true).addParameter("name", name).addParameter("stylist_id", stylist_id).executeUpdate().getKey();
     }
   }
 }
