@@ -35,4 +35,14 @@ public class StylistTest {
     assertEquals(newStylist.getId(), savedStylist.getId());
   }
 
+  @Test
+  public void find_returnsStylistById() {
+    Stylist firstStylist = new Stylist("Matt");
+    Stylist secondStylist = new Stylist("Jeff");
+    firstStylist.save();
+    secondStylist.save();
+    assertTrue(Stylist.find(firstStylist.getId()).equals(firstStylist));
+    assertTrue(Stylist.find(secondStylist.getId()).equals(secondStylist));
+  }
+
 }
