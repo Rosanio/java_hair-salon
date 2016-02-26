@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 
 import java.util.*;
 
-public class ClientTest {
+public class StylistTest {
 
   @Rule
   public DatabaseRule database = new DatabaseRule();
