@@ -75,4 +75,12 @@ public class Client {
       con.createQuery(sql).addParameter("id", id).executeUpdate();
     }
   }
+
+  public Stylist getStylist() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM stylists WHERE id = :stylist_id";
+      return con.createQuery(sql).addParameter("stylist_id", stylist_id).executeAndFetchFirst(Stylist.class);
+    }
+  }
+
 }

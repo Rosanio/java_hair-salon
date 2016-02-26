@@ -69,4 +69,13 @@ public class ClientTest {
     newClient.delete();
     assertEquals(Client.all().size(), 0);
   }
+
+  @Test
+  public void getStylist_returnsStylistWhichClientIsAssignedTo() {
+    Stylist newStylist = new Stylist("Jeff");
+    newStylist.save();
+    Client newClient = new Client("Matt", newStylist.getId());
+    newClient.save();
+    assertTrue(newClient.getStylist().equals(newStylist));
+  }
 }
