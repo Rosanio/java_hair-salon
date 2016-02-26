@@ -37,7 +37,7 @@ public class Client {
       return false;
     } else {
       Client newClient = (Client) otherClient;
-      return newClient.getName().equals(name);
+      return newClient.getName().equals(name) && newClient.getStylistId() == stylist_id;
     }
   }
 
