@@ -1,0 +1,13 @@
+<h1>Rosanio's Hair Salon</h1>
+<hr>
+
+#if($stylists.size() > 0)
+<h3>Make an appointment with one of our super professional stylists</h3>
+<ul>
+  #foreach($stylist in $stylists)
+  <li><a href="/$stylist.getId()">$stylist.getName()</a></li>
+  #end
+</ul>
+<br></br>
+#end
+<a href="/addStylist" class="btn btn-primary">Apply to become a member of our staff!</a>
