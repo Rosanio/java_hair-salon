@@ -61,4 +61,12 @@ public class ClientTest {
     newClient.updateStylist(2);
     assertEquals(Client.find(newClient.getId()).getStylistId(), 2);
   }
+
+  @Test
+  public void delete_removesClientFromDatabase() {
+    Client newClient = new Client("Matt", 1);
+    newClient.save();
+    newClient.delete();
+    assertEquals(Client.all().size(), 0);
+  }
 }
