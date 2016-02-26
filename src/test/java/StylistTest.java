@@ -45,4 +45,13 @@ public class StylistTest {
     assertTrue(Stylist.find(secondStylist.getId()).equals(secondStylist));
   }
 
+  @Test
+  public void update_updatesStylistName() {
+    Stylist newStylist = new Stylist("Matt");
+    String newName = "Xanthor";
+    newStylist.save();
+    newStylist.update(newName);
+    assertTrue(Stylist.find(newStylist.getId()).getName().equals(newName));
+  }
+
 }
