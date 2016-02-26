@@ -12,4 +12,12 @@ public class StylistTest {
   public void all_emptyAtFirst() {
     assertEquals(Stylist.all().size(), 0);
   }
+
+  @Test
+  public void equals_returnsTrueWhenStylistsHaveSameName() {
+    Stylist firstStylist = new Stylist("Matt");
+    Stylist secondStylist = new Stylist("Matt");
+    assertTrue(firstStylist.equals(secondStylist));
+  }
+
 }
