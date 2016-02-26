@@ -27,4 +27,12 @@ public class StylistTest {
     assertTrue(Stylist.all().get(0).equals(newStylist));
   }
 
+  @Test
+  public void save_assignsIdToStylist() {
+    Stylist newStylist = new Stylist("Matt");
+    newStylist.save();
+    Stylist savedStylist = Stylist.all().get(0);
+    assertEquals(newStylist.getId(), savedStylist.getId());
+  }
+
 }

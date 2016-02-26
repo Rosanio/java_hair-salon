@@ -37,7 +37,7 @@ public class Stylist {
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO stylists (name) VALUES (:name)";
-      con.createQuery(sql).addParameter("name", name).executeUpdate();
+      this.id = (int) con.createQuery(sql, true).addParameter("name", name).executeUpdate().getKey();
     }
   }
 
