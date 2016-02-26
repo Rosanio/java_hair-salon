@@ -5,10 +5,15 @@
 <ul>
   #foreach($client in $clients)
   <li>$client.getName()</li>
+  <ul>
+    <li><a href="/$stylist.getId()/deleteClient">Delete</a></li>
+  </ul>
   #end
 </ul>
 #end
 
 <a href="/$stylist.getId()/appointment" class="btn btn-primary">Sign up for a stylin' with $stylist.getName()</a>
 <a href="/$stylist.getId()/update" class="btn btn-warning">Update information</a>
-<a href="/$stylist.getId()/delete" class="btn btn-danger">Quit your job</a>
+<a href="/$stylist.getId()/deleteStylist" class="btn btn-danger">Quit your job</a>
+<br>
+<a href="/">Go Home</a>

@@ -3,7 +3,9 @@
 <form action="/$stylist.getId()" method="post">
   <div class="form-group">
     <label for="clientName">What is your name?</label>
-    <input type="text" name="clientName" id="clientName" class="form-control">
+    <input type="text" name="clientName" id="clientName" class="form-control" required>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<a href="$stylist.getId()">Go Back</a>
