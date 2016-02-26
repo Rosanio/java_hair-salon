@@ -44,4 +44,13 @@ public class ClientTest {
     assertTrue(Client.find(firstClient.getId()).equals(firstClient));
     assertTrue(Client.find(secondClient.getId()).equals(secondClient));
   }
+
+  @Test
+  public void updateName_updatesClientName() {
+    Client newClient = new Client("Matt", 1);
+    String newName = "Jeff";
+    newClient.save();
+    newClient.updateName(newName);
+    assertEquals(Client.find(newClient.getId()).getName(), newName);
+  }
 }
