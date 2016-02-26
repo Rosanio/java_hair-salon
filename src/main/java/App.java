@@ -12,9 +12,24 @@ public class App {
 
     get("/", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-
       model.put("stylists", Stylist.all());
       model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/addStylist", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/addStylist.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/success", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String stylistName = request.queryParams("name");
+      Stylist newStylist = new Stylist(stylistName);
+      newStylist.save();
+      model.put("stylist", newStylist);
+      model.put("template", "templates/success.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
   }

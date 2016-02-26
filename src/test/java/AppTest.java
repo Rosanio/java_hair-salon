@@ -8,6 +8,7 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import static org.fluentlenium.core.filter.FilterConstructor.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,6 +20,9 @@ public class AppTest extends FluentTest {
 
   @ClassRule
   public static ServerRule server = new ServerRule();
+
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
 
   @Test
   public void rootTest() {
@@ -32,5 +36,21 @@ public class AppTest extends FluentTest {
     newStylist.save();
     goTo("http://localhost:4567/");
     assertThat(pageSource()).contains("Jeff");
+  }
+
+  @Test
+  public void addStylistTest() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Apply to become a member of our staff!"));
+    assertThat(pageSource()).contains("So, you want to work at a hair salon?");
+  }
+
+  @Test
+  public void successTest() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Apply to become a member of our staff!"));
+    fill("#name").with("Michael");
+    submit(".btn");
+    assertThat(pageSource()).contains("Congratulations");
   }
 }
