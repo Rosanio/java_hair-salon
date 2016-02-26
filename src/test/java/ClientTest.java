@@ -13,4 +13,10 @@ public class ClientTest {
     assertEquals(Client.all().size(), 0);
   }
 
+  @Test
+  public void equals_returnsTrueWhenClientsHaveSameName() {
+    Client firstClient = new Client("Matt", 1);
+    Client secondClient = new Client("Matt", 1);
+    assertTrue(firstClient.equals(secondClient));
+  }
 }
