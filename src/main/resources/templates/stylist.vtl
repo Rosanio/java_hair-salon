@@ -1,11 +1,13 @@
 <h1>Make an Appointment with $stylist.getName()</h1>
 
+#if($clients.size() > 0)
 <h3>Currently Serving:</h3>
 <ul>
   #foreach($client in $clients)
   <li>$client.getName()</li>
   #end
 </ul>
+#end
 
 <a href="/$stylist.getId()/appointment" class="btn btn-primary">Sign up for a stylin' with $stylist.getName()</a>
 <a href="/$stylist.getId()/update" class="btn btn-warning">Update information</a>

@@ -64,4 +64,14 @@ public class AppTest extends FluentTest {
     click("a", withText("Michael"));
     assertThat(pageSource()).contains("Make an Appointment with Michael");
   }
+
+  @Test
+  public void addAppointmentPage() {
+    Stylist michael = new Stylist("Michael");
+    michael.save();
+    String categoryPath = String.format("http://localhost:4567/%d", michael.getId());
+    goTo(categoryPath);
+    click("a", withText("Sign up for a stylin' with Michael"));
+    assertThat(pageSource()).contains("Please enter your information");
+  }
 }
