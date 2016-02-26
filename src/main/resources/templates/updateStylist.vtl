@@ -1,0 +1,17 @@
+<h1>Update your information</h1>
+
+<form action="/$stylist.getId()/clients/$client.getId()/updatedStylist" method="post">
+  <div class="form-group">
+    <label for="updatedStylist">Who would you like to see?</label>
+    <label>
+      <select name="updatedStylist">
+        #foreach($styler in $stylists)
+        <option value="$styler.getId()">$styler.getName()</option>
+        #end
+      </select>
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<a href="/$stylist.getId()/clients/$client.getId()">Go Back</a>

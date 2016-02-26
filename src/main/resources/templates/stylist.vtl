@@ -4,10 +4,7 @@
 <h3>Currently Serving:</h3>
 <ul>
   #foreach($client in $clients)
-  <li>$client.getName()</li>
-  <ul>
-    <li><a href="/$stylist.getId()/deleteClient">Delete</a></li>
-  </ul>
+  <li><a href="/$stylist.getId()/clients/$client.getId()">$client.getName()</a></li>
   #end
 </ul>
 #end

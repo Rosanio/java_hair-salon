@@ -88,5 +88,73 @@ public class App {
       model.put("template", "templates/deleteStylist.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/:id/clients/:clientId", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      Client client = Client.find(Integer.parseInt(request.params(":clientId")));
+      model.put("stylist", stylist);
+      model.put("client", client);
+      model.put("template", "templates/client.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/:id/clients/:clientId/delete", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      Client client = Client.find(Integer.parseInt(request.params(":clientId")));
+      client.delete();
+      model.put("stylist", stylist);
+      model.put("client", client);
+      model.put("template", "templates/deleteClient.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/:id/clients/:clientId/updateName", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      Client client = Client.find(Integer.parseInt(request.params(":clientId")));
+      model.put("stylist", stylist);
+      model.put("client", client);
+      model.put("template", "templates/updateName.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/:id/clients/:clientId/updatedName", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      Client client = Client.find(Integer.parseInt(request.params(":clientId")));
+      String newName = request.queryParams("updatedName");
+      client.updateName(newName);
+      model.put("stylist", stylist);
+      model.put("client", client);
+      model.put("template", "templates/updatedName.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/:id/clients/:clientId/updateStylist", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      Client client = Client.find(Integer.parseInt(request.params(":clientId")));
+      model.put("stylists", Stylist.all());
+      model.put("stylist", stylist);
+      model.put("client", client);
+      model.put("template", "templates/updateStylist.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/:id/clients/:clientId/updatedStylist", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      Client client = Client.find(Integer.parseInt(request.params(":clientId")));
+      Integer newStylistId = Integer.parseInt(request.queryParams("updatedStylist"));
+      Stylist styler = Stylist.find(newStylistId);
+      client.updateStylist(newStylistId);
+      model.put("styler", styler);
+      model.put("stylist", stylist);
+      model.put("client", client);
+      model.put("template", "templates/updatedStylist.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }
