@@ -34,4 +34,14 @@ public class ClientTest {
     Client savedClient = Client.all().get(0);
     assertEquals(newClient.getId(), savedClient.getId());
   }
+
+  @Test
+  public void find_returnsClientById() {
+    Client firstClient = new Client("Matt", 1);
+    Client secondClient = new Client("Jeff", 1);
+    firstClient.save();
+    secondClient.save();
+    assertTrue(Client.find(firstClient.getId()).equals(firstClient));
+    assertTrue(Client.find(secondClient.getId()).equals(secondClient));
+  }
 }
