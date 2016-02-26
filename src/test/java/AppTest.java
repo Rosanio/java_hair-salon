@@ -53,4 +53,15 @@ public class AppTest extends FluentTest {
     submit(".btn");
     assertThat(pageSource()).contains("Congratulations");
   }
+
+  @Test
+  public void stylistPageTest() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Apply to become a member of our staff!"));
+    fill("#name").with("Michael");
+    submit(".btn");
+    click("a", withText("Go Home"));
+    click("a", withText("Michael"));
+    assertThat(pageSource()).contains("Make an Appointment with Michael");
+  }
 }
